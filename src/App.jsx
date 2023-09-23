@@ -1,12 +1,10 @@
-// import ReactCardFlip from 'react-card-flip';
-import "./App.css";
-
 import React, { useState } from "react";
 import ReactCardFlip from "react-card-flip";
+import "./App.css";
 
 function App() {
   const question = [
-    "What language is React based on ",
+    "What language is React based on",
     "Which of the following is used in React.js to increase performance",
     "What is ReactJS",
     "Who created React.js",
@@ -21,10 +19,15 @@ function App() {
     "Javascript",
     "Props",
   ];
-  const [flip, setFlip] = useState(false);
-  function Set() {
-    setFlip(!flip);
+
+  const [flips, setFlips] = useState(Array(question.length).fill(false));
+
+  function handleClick(index) {
+    const newFlips = Array(question.length).fill(false);
+    newFlips[index] = !flips[index];
+    setFlips(newFlips);
   }
+
   return (
     <div
       style={{
@@ -34,11 +37,14 @@ function App() {
       }}
     >
       {question.map((e, index) => {
-        console.log(e, index);
         return (
-          <ReactCardFlip isFlipped={flip} flipDirection="vertical">
+          <ReactCardFlip
+            isFlipped={flips[index]}
+            flipDirection="vertical"
+            key={index}
+          >
             <div
-              onClick={() => setFlip(!flip)}
+              onClick={() => handleClick(index)}
               style={{
                 cursor: "pointer",
                 width: "400px",
@@ -58,7 +64,7 @@ function App() {
               {e}
             </div>
             <div
-              onClick={() => setFlip(!flip)}
+              onClick={() => handleClick(index)}
               style={{
                 cursor: "pointer",
                 width: "400px",
