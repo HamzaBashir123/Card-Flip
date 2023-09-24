@@ -29,11 +29,12 @@ function App() {
   }
 
   return (
-    <div
+    <div className="mainDiv"
       style={{
         display: "flex",
         flexWrap: "wrap",
         padding: "100px",
+        justifyContent:"space-evenly",
       }}
     >
       {question.map((e, index) => {
@@ -43,7 +44,7 @@ function App() {
             flipDirection="vertical"
             key={index}
           >
-            <div
+            <div className="cardFlip"
               onClick={() => handleClick(index)}
               style={{
                 cursor: "pointer",
@@ -63,7 +64,7 @@ function App() {
             >
               {e}
             </div>
-            <div
+            <div className="cardFlip"
               onClick={() => handleClick(index)}
               style={{
                 cursor: "pointer",
